@@ -12,10 +12,14 @@ export const metadata = {
   description: "Using Inter font from Google Fonts",
 };
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children })=> {
   return (
-    <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+    <html lang="en">
+      <body>
+        <Header/>
+        {children}
+        <Footer/></body>
     </html>
   );
 }
+export default RootLayout
