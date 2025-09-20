@@ -15,7 +15,7 @@ const DeleteItem = (context) => {
   useEffect(() => {
     const getSingleItem = async (id) => {
       const response = await fetch(
-        `http://localhost:3000/api/item/readsingle/${id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/item/readsingle/${id}`,
         { cache: "no-store" }
       );
       const jsonData = await response.json();
@@ -32,7 +32,7 @@ const DeleteItem = (context) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3000/api/item/delete/${context.params.id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/item/delete/${context.params.id}`,
         {
           method: "DELETE",
           headers: {
