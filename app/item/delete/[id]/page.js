@@ -2,6 +2,7 @@
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import useAuth from "../../../utils/useAuth"
 
 const DeleteItem = (context) => {
   const [title, setTitle] = useState("");
@@ -10,6 +11,7 @@ const DeleteItem = (context) => {
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const router = useRouter();
+  const loginUserEmail = useAuth()
   useEffect(() => {
     const getSingleItem = async (id) => {
       const response = await fetch(
@@ -39,7 +41,7 @@ const DeleteItem = (context) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
-            email: "ダミーデータ",
+            email: loginUserEmail
           }),
         }
       );
@@ -51,6 +53,7 @@ const DeleteItem = (context) => {
       alert("アイテム削除失敗");
     }
   };
+  if(loginUserEmail === email){
   return (
     <div>
       <h1>アイテム削除</h1>
@@ -62,6 +65,9 @@ const DeleteItem = (context) => {
         <button>削除</button>
       </form>
     </div>
-  );
-};
+  )
+}else{
+  return <h1>権限がありません</h1>
+}
+}
 export default DeleteItem;

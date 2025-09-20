@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
+import useAuth from "../../../utils/useAuth"
 
 const UpdateItem = (context) => {
   const [title, setTitle] = useState("");
@@ -9,6 +10,7 @@ const UpdateItem = (context) => {
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const router = useRouter();
+  const loginUserEmail = useAuth()
   useEffect(() => {
     const getSingleItem = async (id) => {
       const response = await fetch(
@@ -42,7 +44,7 @@ const UpdateItem = (context) => {
             price: price,
             image: image,
             description: description,
-            email: "ダミーデータ",
+            email: loginUserEmail
           }),
         }
       );
@@ -54,6 +56,7 @@ const UpdateItem = (context) => {
       alert("アイテム編集失敗");
     }
   };
+  if(loginUserEmail === email){
   return (
     <div>
       <h1>アイテム編集</h1>
@@ -94,5 +97,8 @@ const UpdateItem = (context) => {
       </form>
     </div>
   );
-};
+}else{
+  return <h1>権限がありません</h1>
+}
+}
 export default UpdateItem;

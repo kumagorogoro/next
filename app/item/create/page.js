@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useAuth from "../../utils/useAuth"
 
 const CreateItem = () => {
   const [title, setTitle] = useState("");
@@ -8,6 +9,8 @@ const CreateItem = () => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const router = useRouter();
+  const loginUserEmail = useAuth()
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -23,7 +26,7 @@ const CreateItem = () => {
           price: price,
           image: image,
           description: description,
-          email: "ダミーデータ",
+          email: loginUserEmail
         }),
       });
       const jsonData = await response.json();
@@ -34,6 +37,7 @@ const CreateItem = () => {
       alert("アイテム作成失敗");
     }
   };
+  if(loginUserEmail){
   return (
     <div>
       <h1>アイテム作成</h1>
@@ -74,5 +78,6 @@ const CreateItem = () => {
       </form>
     </div>
   );
+};
 };
 export default CreateItem;
