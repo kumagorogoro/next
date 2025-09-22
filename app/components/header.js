@@ -21,10 +21,10 @@ const Header = () => {
             <Link href="/user/register">登録</Link>
           </li>
           <li>
-            <link href="/user/login">ログイン</link>
+            <Link href="/user/login">ログイン</Link>
           </li>
           <li>
-            <link href="/item/create">アイテム作成</link>
+            <Link href="/item/create">アイテム作成</Link>
           </li>
         </ul>
       </nav>
