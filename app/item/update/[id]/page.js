@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
-import useAuth from "../../../utils/useAuth"
+import useAuth from "../../../utils/useAuth";
 
 const UpdateItem = (context) => {
   const [title, setTitle] = useState("");
@@ -9,9 +9,9 @@ const UpdateItem = (context) => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const loginUserEmail = useAuth()
+  const loginUserEmail = useAuth();
   useEffect(() => {
     const getSingleItem = async (id) => {
       const response = await fetch(
@@ -46,7 +46,7 @@ const UpdateItem = (context) => {
             price: price,
             image: image,
             description: description,
-            email: loginUserEmail
+            email: loginUserEmail,
           }),
         }
       );
@@ -58,53 +58,53 @@ const UpdateItem = (context) => {
       alert("アイテム編集失敗");
     }
   };
-  if(loading){
-  if(loginUserEmail === email){
-  return (
-    <div>
-      <h1 className = "page-title">アイテム編集</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          type="text"
-          name="title"
-          placeholder="アイテム名"
-          required
-        />
-        <input
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          type="text"
-          name="price"
-          placeholder="値段"
-          required
-        />
-        <input
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          type="text"
-          name="image"
-          placeholder="画像URL"
-          required
-        />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          name="description"
-          rows={15}
-          placeholder="商品説明"
-          required
-        ></textarea>
-        <button>編集</button>
-      </form>
-    </div>
-  );
-}else{
-  return <h1>権限がありません</h1>
-}
-}else{
-  return <h1>ローディング中...</h1>
-}
-}
+  if (loading) {
+    if (loginUserEmail === email) {
+      return (
+        <div>
+          <h1 className="page-title">アイテム編集</h1>
+          <form onSubmit={handleSubmit}>
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              type="text"
+              name="title"
+              placeholder="アイテム名"
+              required
+            />
+            <input
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              type="text"
+              name="price"
+              placeholder="値段"
+              required
+            />
+            <input
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              type="text"
+              name="image"
+              placeholder="画像URL"
+              required
+            />
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              name="description"
+              rows={15}
+              placeholder="商品説明"
+              required
+            ></textarea>
+            <button>編集</button>
+          </form>
+        </div>
+      );
+    } else {
+      return <h1>権限がありません</h1>;
+    }
+  } else {
+    return <h1>ローディング中...</h1>;
+  }
+};
 export default UpdateItem;

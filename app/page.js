@@ -4,9 +4,7 @@ import Image from "next/image";
 const getAllItems = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/item/readall`,
-    {
-      cache: "no-store",
-    }
+    { cache: "no-store" }
   );
   const jsonData = await response.json();
   const allItems = jsonData.allitems;
