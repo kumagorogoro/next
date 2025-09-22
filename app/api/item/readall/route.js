@@ -8,11 +8,11 @@ export async function GET() {
     const allItems = await ItemModel.find();
     return NextResponse.json({
       message: "アイテム読み取り成功（オール）",
-      allitems: allItems,
+      allItems: allItems,
     });
   } catch {
     return NextResponse.json({ message: "アイテム読み取り失敗（オール）" });
   }
 }
 
-export const revaalidate = 0;
+export const revalidate = 0;
