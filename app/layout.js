@@ -1,8 +1,11 @@
 // app/layout.tsx
 import "./globals.css";
+import Header from "./components/header";
+import Footer from "./components/footer";
+
 import { Inter } from "next/font/google"; // ✅ Inter フォントをインポート
 
-const inter = Inter({
+const Inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter", // 任意の変数名
 });
@@ -12,14 +15,15 @@ export const metadata = {
   description: "Using Inter font from Google Fonts",
 };
 
-const RootLayout = ({ children })=> {
+const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <Header/>
+        <Header />
         {children}
-        <Footer/></body>
+        <Footer />
+      </body>
     </html>
   );
-}
-export default RootLayout
+};
+export default RootLayout;
